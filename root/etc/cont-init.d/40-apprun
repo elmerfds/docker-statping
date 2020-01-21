@@ -5,7 +5,9 @@ echo "| Statping run flags  |"
 echo "-----------------------"
 echo
 
-echo '[ Checking for Verbose logs ]'
+echo '[ Port ]'
+echo "==> Port: $PORT"
+echo '[ Verbose logs ]'
 if [ -z "$VERBOSE" ]
   then
   echo '==> VERBOSE: disabled'
@@ -16,8 +18,7 @@ else
   echo
   VERBOSE_OPTION="-verbose $VERBOSE"
 fi
-
-echo '[ Checking for ENV file]'
+echo '[ ENV file]'
 if [ -z "$ENV" ]
 then
   echo '==> ENV file loc: not defined'
