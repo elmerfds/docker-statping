@@ -42,7 +42,6 @@ OR
 docker run -d --name='Statping' --net='bridge' -e TZ="Europe/London" -e HOST_OS="Unraid" -e 'PUID'='99' -e 'PGID'='100' -e 'SKIPUPDATE'='no' -p '8366:8080/tcp' -v '/mnt/cache/appdata/statping/config':'/app':'rw' 'eafxx/statping' 
 
 ```
-**NOTE:** On the first run, the container will create a config.json in the /config folder and it will exit, add in your details for Sonarr, Radarr and your Trakt app info (complete step 2 first), then start or restart the container.
 
 ## Parameters
 
