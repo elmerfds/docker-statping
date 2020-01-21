@@ -14,50 +14,26 @@ if [ -z "$VERBOSE" ]
 else
   echo "==> VERBOSE: mode set, $VERBOSE"
   echo
-  VERBOSE_OPTION="-VERBOSE $VERBOSE"
+  VERBOSE_OPTION="-verbose $VERBOSE"
 fi
 
-echo '[ Checking for DISABLE_LOGS ]'
-if [ -z "$DISABLE_LOGS" ]
+echo '[ Checking for ENV file]'
+if [ -z "$ENV" ]
 then
-  echo '==> DISABLE_LOGS: not defined, default: false'
+  echo '==> ENV file loc: not defined'
   echo
-  DISABLE_LOGS_OPTION=""
+  ENV_OPTION=""
 else
-  echo "==> DISABLE_LOGS: $DISABLE_LOGS"
+  echo "==> ENV: $ENV"
   echo
-  DISABLE_LOGS_OPTION="-DISABLE_LOGS $DISABLE_LOGS"
+  ENV_OPTION="-ENV $ENV"
 fi
 
-echo '[ Checking for GO_ENV ]'
-if [ -z "$GO_ENV" ]
-then
-  echo '==> GO_ENV: not defined'
-  echo
-  GO_ENV_OPTION=""
-else
-  echo "==> GO_ENV: $GO_ENV"
-  echo
-  GO_ENV_OPTION="-GO_ENV $GO_ENV"
-fi
-
-echo '[ Checking for BASE_PATH ]'
-if [ -z "$BASE_PATH" ]
-then
-  echo '==> BASE_PATH: not defined'
-  echo
-  BASE_PATH_OPTION=""
-else
-  echo "==> BASE_PATH: $BASE_PATH"
-  echo
-  BASE_PATH_OPTION="-BASE_PATH $BASE_PATH"
-fi
-
-echo 'for more info on the above run options: https://hub.docker.com/r/eafxx/statping' 
+echo 'Docker Image source: https://hub.docker.com/r/eafxx/statping' 
+echo 'Project source: https://github.com/hunterlong/statping'
 echo
 echo '---------------------'
 echo '| Starting Statping |'
 echo '---------------------'
 echo
-echo "s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $DISABLE_LOGS_OPTION $GO_ENV_OPTION $BASE_PATH_OPTION"
-s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $DISABLE_LOGS_OPTION $GO_ENV_OPTION $BASE_PATH_OPTION
+s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $ENV_OPTION
