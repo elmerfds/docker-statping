@@ -36,7 +36,9 @@ else
                 echo
 		    fi
         elif [[ "v$INSTALLED_VER" == "$SOURCE_VER" ]]; then
+            echo
             echo "Statping running latest ver: $SOURCE_VER"
+            echo
         fi
 fi
 
