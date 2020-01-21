@@ -1,9 +1,6 @@
 #!/usr/bin/with-contenv bash
 VERSION=$(curl -s https://api.github.com/repos/hunterlong/statping/releases/latest | jq -r ".tag_name") 
-#INSTALL_CHECK=$(command -v statping version >/dev/null 2>&1 || { echo >&2 0;})
-#INSTALL_CHECK=$(statping version >/dev/null 2>&1)
 SOURCE_VER=$VERSION
-# Fetch site or update existing
 
 mkdir -p /install 
 cd /install
@@ -12,7 +9,7 @@ if [[ ! -f "/usr/local/bin/statping" ]]; then
   echo '| Installing Statping |'
   echo '-----------------------'
   echo
-  	wget https://github.com/hunterlong/statping/releases/download/v0.80.69/statping-linux-alpine.tar.gz -P "/install" -q --show-progress
+  	wget https://github.com/hunterlong/statping/releases/download/$VERSION/statping-linux-alpine.tar.gz -P "/install" -q --show-progress
 	tar -xvzf /install/statping-linux-alpine.tar.gz
   	chmod +x statping
   	mv statping /usr/local/bin/statping
