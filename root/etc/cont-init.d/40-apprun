@@ -59,4 +59,5 @@ echo '---------------------'
 echo '| Starting Statping |'
 echo '---------------------'
 echo
+echo "s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $DISABLE_LOGS_OPTION $GO_ENV_OPTION $BASE_PATH_OPTION"
 s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $DISABLE_LOGS_OPTION $GO_ENV_OPTION $BASE_PATH_OPTION
