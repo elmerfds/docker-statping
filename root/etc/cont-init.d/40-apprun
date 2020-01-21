@@ -1,18 +1,18 @@
 #!/usr/bin/with-contenv bash
 echo
 echo "-----------------------"
-echo "| Statping run options |"
+echo "| Statping run flags |"
 echo "-----------------------"
 echo
 
 echo '[ Checking for Verbose logs ]'
 if [ -z "$VERBOSE" ]
   then
-  echo '==> VERBOSE: not set'
+  echo '==> VERBOSE: disabled'
   echo
    VERBOSE_OPTION=""
 else
-  echo "==> VERBOSE: mode set, $VERBOSE"
+  echo "==> VERBOSE: enabled, $VERBOSE"
   echo
   VERBOSE_OPTION="-verbose $VERBOSE"
 fi
@@ -29,11 +29,12 @@ else
   ENV_OPTION="-ENV $ENV"
 fi
 
-echo 'Docker Image source: https://hub.docker.com/r/eafxx/statping' 
-echo 'Project source: https://github.com/hunterlong/statping'
 echo
 echo '---------------------'
 echo '| Starting Statping |'
 echo '---------------------'
+echo
+echo 'Docker source: https://hub.docker.com/r/eafxx/statping' 
+echo 'Project source: https://github.com/hunterlong/statping'
 echo
 s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $ENV_OPTION
