@@ -1,2 +1,2 @@
 #!/usr/bin/with-contenv bash
-s6-setuidgid abc statping -port $PORT
+s6-setuidgid abc statping -port $PORT -VERBOSE $VERBOSE -STATPING_DIR $STATPING_DIR -DISABLE_LOGS $DISABLE_LOGS -GO_ENV $GO_ENV -BASE_PATH $BASE_PATH
