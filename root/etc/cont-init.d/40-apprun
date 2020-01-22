@@ -22,7 +22,7 @@ fi
 echo '[ ENV file]'
 if [ -z "$ENV" ]
 then
-  echo '==> ENV file loc: not defined'
+  echo '==> ENV file: not defined'
   echo
   ENV_OPTION=""
 else
