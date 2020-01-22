@@ -1,2 +1,42 @@
 #!/usr/bin/with-contenv bash
-s6-setuidgid abc statping -port $PORT
+echo
+echo "-----------------------"
+echo "| Statping run flags  |"
+echo "-----------------------"
+echo
+
+echo '[ Port ]'
+echo "==> Port: $PORT"
+echo
+echo '[ Verbose logs ]'
+if [ -z "$VERBOSE" ]
+  then
+  echo '==> VERBOSE: disabled'
+  echo
+   VERBOSE_OPTION=""
+else
+  echo "==> VERBOSE: enabled, $VERBOSE"
+  echo
+  VERBOSE_OPTION="-verbose $VERBOSE"
+fi
+echo '[ ENV file]'
+if [ -z "$ENV" ]
+then
+  echo '==> ENV file loc: not defined'
+  echo
+  ENV_OPTION=""
+else
+  echo "==> ENV: $ENV"
+  echo
+  ENV_OPTION="-ENV $ENV"
+fi
+
+echo
+echo '---------------------'
+echo '| Starting Statping |'
+echo '---------------------'
+echo
+echo 'Docker source: https://hub.docker.com/r/eafxx/statping' 
+echo 'Project source: https://github.com/hunterlong/statping'
+echo
+s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $ENV_OPTION

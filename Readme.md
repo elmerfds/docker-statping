@@ -39,7 +39,7 @@ OR
 **Docker Run**
 
 ```
-docker run -d --name='Statping' --net='bridge' -e TZ="Europe/London" -e HOST_OS="Unraid" -e 'PUID'='99' -e 'PGID'='100' -e 'SKIPUPDATE'='no' -p '8366:8080/tcp' -v '/mnt/cache/appdata/statping/config':'/app':'rw' 'eafxx/statping' 
+docker run -d --name='Statping' --net='bridge' -e TZ="Europe/London" -e 'PUID'='99' -e 'PGID'='100' -e 'SKIPUPDATE'='no' -p '8366:8080/tcp' -v '/mnt/cache/appdata/statping/config':'/app':'rw' 'eafxx/statping' 
 
 ```
 
