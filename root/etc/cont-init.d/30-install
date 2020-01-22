@@ -40,7 +40,7 @@ else
             echo '| Update not required |'
             echo '-----------------------'        
             echo
-            echo "Statping running latest ver: $SOURCE_VER"
+            echo "Statping running latest available GH release: $SOURCE_VER"
             echo
         fi
 fi
