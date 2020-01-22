@@ -28,7 +28,7 @@ then
 else
   echo "==> ENV: $ENV"
   echo
-  ENV_OPTION="-ENV $ENV"
+  ENV_OPTION="-env $ENV"
 fi
 
 echo
