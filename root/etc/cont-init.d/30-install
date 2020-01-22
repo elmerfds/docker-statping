@@ -51,7 +51,8 @@ fi
 # Set Permissions
 chown -R abc:abc \
          /install \
-         /config
+        /config \
+       /app
 
-cd /config
+cd /app
 
