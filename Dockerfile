@@ -5,7 +5,7 @@ ARG VERSION
 ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080
-RUN apk --no-cache add curl jq libsass wget tzdata
+RUN apk --no-cache add curl jq libsass wget tzdata libsass
 
 COPY root/ /
 
