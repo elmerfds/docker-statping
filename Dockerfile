@@ -14,8 +14,7 @@ RUN mkdir -p /install  && \
     wget https://github.com/hunterlong/statping/releases/download/$VERSION/statping-linux-alpine.tar.gz -P "/install" -q --show-progress && \
     tar -xvzf /install/statping-linux-alpine.tar.gz && \
     chmod +x statping && \
-    mv statping /usr/local/bin/statping && \
-    statping version 
+    mv statping /usr/local/bin/statping
 
 COPY root/ /
 
