@@ -7,10 +7,16 @@ RUN curl -L -s https://assets.statping.com/sass -o /usr/local/bin/sass && \
 ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080
+WORKDIR /app
+
+RUN mkdir -p /install  && \
+    wget https://github.com/hunterlong/statping/releases/download/$VERSION/statping-linux-alpine.tar.gz -P "/install" -q --show-progress && \
+    tar -xvzf /install/statping-linux-alpine.tar.gz && \
+    chmod +x statping && \
+    mv statping /usr/local/bin/statping 
 
 COPY root/ /
 
-WORKDIR /app
 VOLUME /app
 EXPOSE $PORT
 
