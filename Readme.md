@@ -13,7 +13,7 @@ docker create \
   -e PGID=<gid> -e PUID=<uid> \
   -e TZ=<timezone> \
   -e SKIPUPDATE='no' \       
-  eafxx/traktarr
+  eafxx/statping
 
 ```
 
