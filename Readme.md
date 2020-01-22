@@ -53,7 +53,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e PGID=100` | For GroupID - see below for explanation |
 | `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `-e SKIPUPDATE=no` | Skip auto-update of the Statping app on container restarts, options: yes/no, default: no |
-| `-e VERBOSE=1` | 1-4, display more logs in verbose mode. Default 1 (optional)  |
+| `-e VERBOSE=1` | 1-4, display more logs in verbose mode (optional)  |
 | `-e env=/app/.env` | .env file to set as environment variables while running server (optional) |
 | `-v /app` | Contains all relevant configuration files. |
 
