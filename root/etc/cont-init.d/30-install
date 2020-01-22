@@ -36,6 +36,9 @@ else
                 echo
 		    fi
         elif [[ "v$INSTALLED_VER" == "$SOURCE_VER" ]]; then
+            echo '-----------------------'
+            echo '| Update not required |'
+            echo '-----------------------'        
             echo
             echo "Statping running latest ver: $SOURCE_VER"
             echo
