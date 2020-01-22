@@ -5,9 +5,6 @@ echo "| Statping run flags  |"
 echo "-----------------------"
 echo
 
-echo '[ Port ]'
-echo "==> Port: $PORT"
-echo
 echo '[ Verbose logs ]'
 if [ -z "$VERBOSE" ]
   then
