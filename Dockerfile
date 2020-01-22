@@ -7,6 +7,7 @@ RUN curl -L -s https://assets.statping.com/sass -o /usr/local/bin/sass && \
 ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080
+ENV VERSION="$(curl -s https://api.github.com/repos/hunterlong/statping/releases/latest | jq -r ".tag_name")"
 WORKDIR /app
 
 RUN mkdir -p /install  && \
