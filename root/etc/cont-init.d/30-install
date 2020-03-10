@@ -36,6 +36,7 @@ else
                 echo
 		    fi
         elif [[ "v$INSTALLED_VER" == "$SOURCE_VER" ]]; then
+            echo
             echo '-----------------------'
             echo '| Update not required |'
             echo '-----------------------'        
