@@ -1,4 +1,4 @@
-FROM eafxx/alpine-base
+FROM eafxx/workbench
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
 RUN apk --no-cache add curl jq libsass wget tzdata libsass
