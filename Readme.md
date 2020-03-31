@@ -1,8 +1,5 @@
 # [eafxx/statping](https://hub.docker.com/r/eafxx/statping)
 
-- Multiarch Support: 
-  * amd64
-  * armv7, arm64 i.e. supports Raspberry Pi
 - PUID/PGID support
 - Updates app on container restart (can disable)
 
