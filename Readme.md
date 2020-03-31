@@ -1,8 +1,22 @@
-# Statping
+# [eafxx/statping](https://hub.docker.com/r/eafxx/statping)
 
-Status Page for monitoring your websites and applications with beautiful graphs, analytics, and plugins. Run on any type of environment..
+- Multiarch Support: 
+  * amd64
+  * armv7, arm64 i.e. supports Raspberry Pi
+- PUID/PGID support
+- Updates app on container restart (can disable)
 
-# Usage
+Status Page for monitoring your websites and applications with beautiful graphs, analytics, and plugins. Run on any type of environment.
+
+# Docker
+
+**Tags**
+
+| Tag      | Description                          | Build Status                                                                                                | 
+| ---------|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| latest | stable                 | ![Docker Build Master](https://github.com/elmerfdz/docker-statping/workflows/Docker%20Build%20Master/badge.svg) | 
+| dev | development, pre-release      | ![Docker Build Dev](https://github.com/elmerfdz/docker-statping/workflows/Docker%20Build%20Dev/badge.svg)     |
+| exp | experimental, unstable        | ![Docker Build Exp](https://github.com/elmerfdz/docker-statping/workflows/Docker%20Build%20Exp/badge.svg)   | 
 
 **Docker Create**
 
