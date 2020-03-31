@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bash
-VERSION=$(curl -s https://api.github.com/repos/hunterlong/statping/releases/latest | jq -r ".tag_name") 
+VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") 
 SOURCE_VER=$VERSION
 
 mkdir -p /install 
