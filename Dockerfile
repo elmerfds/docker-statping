@@ -11,7 +11,7 @@ WORKDIR /app
 
 RUN mkdir -p /install  && \
     VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
-    wget https://github.com/hunterlong/statping/releases/download/$VERSION/statping-linux-alpine.tar.gz -P "/install" -q --show-progress && \
+    wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-amd64.tar.gz -P "/install" -q --show-progress && \
     tar -xvzf /install/statping-linux-alpine.tar.gz && \
     chmod +x statping && \
     mv statping /usr/local/bin/statping
