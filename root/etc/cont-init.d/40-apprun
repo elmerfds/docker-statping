@@ -14,7 +14,7 @@ if [ -z "$VERBOSE" ]
 else
   echo "==> VERBOSE: enabled, $VERBOSE"
   echo
-  VERBOSE_OPTION="-verbose $VERBOSE"
+  VERBOSE_OPTION="-v $VERBOSE"
 fi
 echo '[ ENV file]'
 if [ -z "$ENV" ]
@@ -36,4 +36,4 @@ echo
 echo 'Docker source: https://hub.docker.com/r/eafxx/statping' 
 echo 'Project source: https://github.com/hunterlong/statping'
 echo
-s6-setuidgid abc statping -port $PORT $VERBOSE_OPTION $ENV_OPTION
+s6-setuidgid abc statping -p $PORT $VERBOSE_OPTION $ENV_OPTION
