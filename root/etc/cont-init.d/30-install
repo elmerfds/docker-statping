@@ -50,7 +50,7 @@ fi
  			rm -rf \
           			/root/.cache \
           			/tmp/* \
-	  			    /install/statping-linux-alpine.tar.gz
+	  			    /install/statping-linux-amd64.tar.gz
 
 # Set Permissions
 chown -R abc:abc \

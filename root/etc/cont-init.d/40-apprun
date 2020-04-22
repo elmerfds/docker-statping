@@ -16,17 +16,6 @@ else
   echo
   VERBOSE_OPTION="-v $VERBOSE"
 fi
-echo '[ ENV file]'
-if [ -z "$ENV" ]
-then
-  echo '==> ENV file: not defined'
-  echo
-  ENV_OPTION=""
-else
-  echo "==> ENV: $ENV"
-  echo
-  ENV_OPTION="-env $ENV"
-fi
 
 echo
 echo '---------------------'
@@ -36,4 +25,4 @@ echo
 echo 'Docker source: https://hub.docker.com/r/eafxx/statping' 
 echo 'Project source: https://github.com/hunterlong/statping'
 echo
-s6-setuidgid abc statping -p $PORT $VERBOSE_OPTION $ENV_OPTION
+s6-setuidgid abc statping -p $PORT $VERBOSE_OPTION
