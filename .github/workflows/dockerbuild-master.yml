@@ -5,8 +5,6 @@ on:
       - 'README.md'    
     branches: 
       - master
-  schedule:
-    - cron: '00 0 * * 6'
 jobs:
   buildx:
     runs-on: ubuntu-latest
