@@ -5,8 +5,6 @@ on:
       - 'README.md'    
     branches: 
       - master
-  schedule:
-    - cron: '00 0 * * 6'
 jobs:
   buildx:
     runs-on: ubuntu-latest
@@ -33,7 +31,7 @@ jobs:
     - name: Run Buildx
       run: |
         docker buildx build \
-        --platform linux/amd64,linux/arm64,linux/arm/v7 \
+        --platform linux/amd64 \
         --tag eafxx/statping:latest \
         --tag eafxx/statping:latest-${{ env.GITHUB_SHA_SHORT }} \
         --push . \

@@ -1,8 +1,5 @@
 # [eafxx/statping](https://hub.docker.com/r/eafxx/statping)
 
-- Multiarch Support: 
-  * amd64
-  * armv7, arm64 i.e. supports Raspberry Pi
 - PUID/PGID support
 - Updates app on container restart (can disable)
 
@@ -53,7 +50,7 @@ OR
 **Docker Run**
 
 ```
-docker run -d --name='Statping' --net='bridge' -e TZ="Europe/London" -e 'PUID'='99' -e 'PGID'='100' -e 'SKIPUPDATE'='no' -e 'VERBOSE'='1' -e 'ENV'='/app/.env' -p '8366:8080/tcp' -v '/mnt/cache/appdata/statping/config':'/app':'rw' 'eafxx/statping' 
+docker run -d --name='Statping' --net='bridge' -e TZ="Europe/London" -e 'PUID'='99' -e 'PGID'='100' -e 'SKIPUPDATE'='no' -e 'VERBOSE'='1' -p '8366:8080/tcp' -v '/mnt/cache/appdata/statping/config':'/app':'rw' 'eafxx/statping' 
 
 ```
 
@@ -68,7 +65,6 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `-e SKIPUPDATE=no` | Skip auto-update of the Statping app on container restarts, options: yes/no, default: no |
 | `-e VERBOSE=1` | 1-4, display more logs in verbose mode (optional)  |
-| `-e env=/app/.env` | .env file to set as environment [variables](https://github.com/hunterlong/statping/wiki/Environment-Variables) while running server (optional) |
 | `-v /app` | Contains all relevant configuration files |
 
 ## User / Group Identifiers
