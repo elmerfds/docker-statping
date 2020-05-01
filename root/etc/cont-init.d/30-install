@@ -1,6 +1,17 @@
 #!/usr/bin/with-contenv bash
 VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") 
 SOURCE_VER=$VERSION
+# get 64x or 32 machine arch
+    MACHINE_TYPE=`uname -m`
+    if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+      ARCH="amd64"
+    elif [ ${MACHINE_TYPE} == 'arm' ]; then
+      ARCH="arm"
+    elif [ ${MACHINE_TYPE} == 'arm64' ] || [ ${MACHINE_TYPE} == 'aarch64' ] || [ ${MACHINE_TYPE} == 'armv8b' ] || [ ${MACHINE_TYPE} == 'armv8l' ] || [ ${MACHINE_TYPE} == 'aarch64_be' ]; then
+      ARCH="arm64"
+    else
+      ARCH="386"
+    fi
 
 mkdir -p /install 
 cd /install
@@ -9,8 +20,8 @@ if [[ ! -f "/usr/local/bin/statping" ]]; then
   echo '| Installing Statping |'
   echo '-----------------------'
   echo
-  	wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-amd64.tar.gz -P "/install" -q --show-progress
-	tar -xvzf /install/statping-linux-amd64.tar.gz
+  	wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz -P "/install" -q --show-progress
+	tar -xvzf /install/statping-linux-$ARCH.tar.gz
   	chmod +x statping
   	mv statping /usr/local/bin/statping
     statping version
@@ -28,8 +39,8 @@ else
             echo '|  Updating Statping   |'
             echo '-----------------------'
             if [[ "v$INSTALLED_VER" != "$SOURCE_VER" ]]; then
-			    wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-amd64.tar.gz -P "/install" -q --show-progress
-	            tar -xvzf /install/statping-linux-amd64.tar.gz
+			    wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz -P "/install" -q --show-progress
+	            tar -xvzf /install/statping-linux-$ARCH.tar.gz
 			    chmod +x statping
 			    mv statping /usr/local/bin/statping
                 statping version
