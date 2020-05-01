@@ -14,9 +14,9 @@ ADD . /go/src/github.com/hunterlong/statping
 RUN make install
 
 # Statping :latest Docker Image
-#FROM alpine:latest
+FROM alpine:latest
 #FROM eafxx/alpine-base:m
-FROM lsiobase/alpine
+#FROM lsiobase/alpine
 LABEL maintainer="Hunter Long (https://github.com/hunterlong)"
 
 ARG VERSION
@@ -35,4 +35,4 @@ EXPOSE $PORT
 
 HEALTHCHECK --interval=60s --timeout=10s --retries=3 CMD curl -s "http://localhost:$PORT/health" | jq -r -e ".online==true"
 
-#CMD statping -port $PORT
+CMD statping -port $PORT
