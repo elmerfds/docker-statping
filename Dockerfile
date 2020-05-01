@@ -13,7 +13,7 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
       tzdata \
       curl \
       jq \
-      libsass \ 
+      ruby-sass \ 
       wget
 RUN curl -L -s https://assets.statping.com/sass -o /usr/local/bin/sass && \
     chmod +x /usr/local/bin/sass
