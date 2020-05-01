@@ -23,9 +23,10 @@ ENV PORT=8080
 WORKDIR /app
 RUN mkdir -p /install  && \
     curl -o- -L https://statping.com/install.sh | bash
-COPY root/ /
+#COPY root/ /
 
 VOLUME /app
 EXPOSE $PORT
 
 HEALTHCHECK --interval=60s --timeout=10s --retries=3 CMD curl -s "http://localhost:$PORT/health" | jq -r -e ".online==true"
+CMD statping -port $PORT
