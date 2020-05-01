@@ -22,7 +22,8 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
 RUN mkdir -p /install  && \
-    curl -o- -L https://statping.com/install.sh | bash
+    curl -o- -L https://statping.com/install.sh | bash \ 
+    statping version 
 #COPY root/ /
 
 VOLUME /app
