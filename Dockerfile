@@ -22,7 +22,11 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
 RUN mkdir -p /install  && \
-    curl -o- -L https://statping.com/install.sh | bash
+    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
+    wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-amd64.tar.gz -P "/install" -q --show-progress && \
+    tar -xvzf /install/statping-linux-amd64.tar.gz -C /install && \
+    chmod +x /install/statping && \
+    mv /install/statping /usr/local/bin/statping
 COPY root/ /
 
 VOLUME /app
