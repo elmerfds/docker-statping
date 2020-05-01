@@ -19,13 +19,13 @@ WORKDIR /app
 
 RUN MACHINE_TYPE=`uname -m`; \
     if [ ${MACHINE_TYPE} == 'x86_64' ]; then \
-      ARCH="amd64" \
+      ARCH="amd64"; \
     elif [ ${MACHINE_TYPE} == 'arm' ]; then \
-      ARCH="arm" \
+      ARCH="arm"; \
     elif [ ${MACHINE_TYPE} == 'arm64' ] || [ ${MACHINE_TYPE} == 'aarch64' ] || [ ${MACHINE_TYPE} == 'armv8b' ] || [ ${MACHINE_TYPE} == 'armv8l' ] || [ ${MACHINE_TYPE} == 'aarch64_be' ]; then \
-      ARCH="arm64" \
+      ARCH="arm64"; \
     else \
-      ARCH="386" \
+      ARCH="386"; \
     fi
 
 RUN mkdir -p /install  && \
