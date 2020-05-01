@@ -1,8 +1,3 @@
-FROM lsiobase/ubuntu:bionic AS add-apt-repositories
-RUN apt-get update \
- && apt-get upgrade -y \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg 
-
 FROM lsiobase/ubuntu:bionic
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
@@ -21,6 +16,7 @@ ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
+
 RUN mkdir -p /install  && \
     VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
     wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-amd64.tar.gz -P "/install" -q --show-progress && \
