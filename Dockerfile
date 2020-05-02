@@ -17,7 +17,8 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
 
-RUN MACHINE_TYPE="$(uname -m)" \
+RUN MACHINE_TYPE="$(uname -m)";\
+    ECHO $MACHINE_TYPE;\
     if [ "$MACHINE_TYPE" == "x86_64" ]; then\
       ARCH="amd64";\
     elif [ "$MACHINE_TYPE" == "arm" ]; then\
