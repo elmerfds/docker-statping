@@ -1,4 +1,4 @@
-FROM eafxx/ubuntu-base:latest
+FROM lsiobase/ubuntu:bionic
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
