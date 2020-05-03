@@ -1,9 +1,8 @@
 FROM eafxx/ubuntu-base:latest
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
-#RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
-RUN \
- apt-get update \
+RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
+ && apt-get update \
  && apt-get upgrade -y \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       tzdata \
