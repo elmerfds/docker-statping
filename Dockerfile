@@ -21,7 +21,7 @@ RUN MACHINE_TYPE="$(uname -m)"; \
    case "$MACHINE_TYPE" in \
        x86_64) export ARCH='amd64' ;; \
        arm) export ARCH='arm' ;; \
-       arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm' ;; \
+       arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm64' ;; \
    esac;  \
    mkdir -p /install  && \
    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
