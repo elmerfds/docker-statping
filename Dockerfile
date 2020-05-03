@@ -17,26 +17,23 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
 
-RUN MACHINE_TYPE="$(uname -m)";\
-    if [ "$MACHINE_TYPE" == ["x86_64"] ]; then\
-      ARCH="amd64";\
-    elif [ "$MACHINE_TYPE" == ["arm"] ]; then\
-      ARCH="arm";\
-    elif [ "$MACHINE_TYPE" == ["arm64"] ] || [ "$MACHINE_TYPE" == ["aarch64"] ] || [ "$MACHINE_TYPE" == ["armv8b"] ] || [ "$MACHINE_TYPE" == ["armv8l"] ] || [ "$MACHINE_TYPE" == ["aarch64_be"] ]; then\
-      ARCH="arm64";\
-    fi
 
-RUN mkdir -p /install  && \
-    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
-    wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz -P "/install" -q --show-progress && \
-    tar -xvzf /install/statping-linux-$ARCH.tar.gz -C /install && \
-    chmod +x /install/statping && \
-    mv /install/statping /usr/local/bin/statping
+COPY test.sh /
+RUN MACHINE_TYPE="$(uname -m)"; \
+   case "$MACHINE_TYPE" in \
+       x86_64) export ARCH='amd64' ;; \
+       arm) export ARCH='arm' ;; \
+       arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm' ;; \
+   esac;  \
+   mkdir -p /install  && \
+   VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
+   wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz -P "/install" -q --show-progress && \
+   tar -xvzf /install/statping-linux-$ARCH.tar.gz -C /install && \
+   chmod +x /install/statping && \
+   mv /install/statping /usr/local/bin/statping
 COPY root/ /
 
 VOLUME /app
 EXPOSE $PORT
 
 HEALTHCHECK --interval=60s --timeout=10s --retries=3 CMD curl -s "http://localhost:$PORT/health" | jq -r -e ".online==true"
-#CMD statping -port $PORT
-
