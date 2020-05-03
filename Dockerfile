@@ -17,8 +17,6 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
 
-
-COPY test.sh /
 RUN MACHINE_TYPE="$(uname -m)"; \
    case "$MACHINE_TYPE" in \
        x86_64) export ARCH='amd64' ;; \
