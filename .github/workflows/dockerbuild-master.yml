@@ -2,7 +2,9 @@ name: Docker Build Master
 on:
   push:
     paths-ignore:
-      - 'README.md'    
+      - 'README.md'
+      - '.github/workflows/dockerbuild-dev.yml'
+      - '.github/workflows/dockerbuild-exp.yml'            
     branches: 
       - master
 jobs:
@@ -25,13 +27,14 @@ jobs:
       id: buildx
       uses: crazy-max/ghaction-docker-buildx@v1.0.5
       with:
-        version: latest
+        buildx-version: latest
+        qemu-version: latest
     - name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
-    - name: Run Buildx
+    - name: Buildx Multiarch Build & Push image
       run: |
         docker buildx build \
-        --platform linux/amd64 \
+        --platform linux/amd64,linux/arm64,linux/arm/v7 \
         --tag eafxx/statping:latest \
         --tag eafxx/statping:latest-${{ env.GITHUB_SHA_SHORT }} \
         --push . \
