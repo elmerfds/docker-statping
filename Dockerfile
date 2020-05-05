@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:bionic
+FROM eafxx/ubuntubase
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
@@ -17,12 +17,15 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
 
-RUN MACHINE_TYPE="$(uname -m)"; \
-   case "$MACHINE_TYPE" in \
+RUN \
+   chmod +x /etc/s6/init/init-stage2 && \
+   chmod +x /docker-mods && \
+   MACHINE_ARCH="$(uname -m)"; \
+   case "$MACHINE_ARCH" in \
        x86_64) export ARCH='amd64' ;; \
-       arm) export ARCH='arm' ;; \
+       armhf|arm|armv7l|armv7) export ARCH='arm' ;; \
        arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm64' ;; \
-   esac;  \
+   esac && \  
    mkdir -p /install  && \
    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
    wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz -P "/install" -q --show-progress && \
