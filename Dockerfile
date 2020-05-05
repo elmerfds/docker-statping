@@ -1,4 +1,4 @@
-FROM eafxx/ubuntubase
+FROM eafxx/ubuntu-base
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
@@ -20,7 +20,7 @@ WORKDIR /app
 RUN \
    chmod +x /etc/s6/init/init-stage2 && \
    chmod +x /docker-mods && \
-   MACHINE_ARCH="$(uname -m)"; \
+   MACHINE_ARCH="$(uname -m)" && \
    case "$MACHINE_ARCH" in \
        x86_64) export ARCH='amd64' ;; \
        armhf|arm|armv7l|armv7) export ARCH='arm' ;; \
