@@ -23,6 +23,6 @@ echo '| Starting Statping |'
 echo '---------------------'
 echo
 echo 'Docker source: https://hub.docker.com/r/eafxx/statping' 
-echo 'Project source: https://github.com/hunterlong/statping'
+echo 'Project source: https://github.com/statping/statping'
 echo
 s6-setuidgid abc statping -p $PORT $VERBOSE_OPTION
