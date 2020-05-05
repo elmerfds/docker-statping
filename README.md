@@ -1,6 +1,7 @@
 # [eafxx/statping](https://hub.docker.com/r/eafxx/statping)
 
 - PUID/PGID support
+- Multiarch support
 - Updates app on container restart (can disable)
 
 Status Page for monitoring your websites and applications with beautiful graphs, analytics, and plugins. Run on any type of environment.
