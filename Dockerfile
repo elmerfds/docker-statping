@@ -5,15 +5,14 @@ ARG VERSION
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3018,DL3003,DL3008 
 RUN \
-mkdir -p /install && \
-rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+ mkdir -p /install && \
+ rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes && \
+ apt-get update && \
+ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       tzdata \
       curl \
       jq \
-      ruby-sass \ 
-      wget
+      ruby-sass
 #RUN curl -L -s https://assets.statping.com/sass -o /usr/local/bin/sass && \
 #    chmod +x /usr/local/bin/sass
 ENV IS_DOCKER=true
