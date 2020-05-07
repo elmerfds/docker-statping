@@ -1,12 +1,14 @@
-FROM eafxx/ubuntu-base
+# hadolint ignore=DL3007
+FROM eafxx/ubuntu-base:latest
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-# hadolint ignore=DL3018,DL3003
-RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
+# hadolint ignore=DL3018,DL3003,DL3008 
+RUN \
+mkdir -p /install && \
+rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && apt-get update \
- && apt-get upgrade -y \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       tzdata \
       curl \
       jq \
@@ -17,8 +19,9 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
 ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080    
-WORKDIR /app
+WORKDIR /install
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+# hadolint ignore=DL3018,DL3003,DL3008 
 RUN \
    chmod +x /etc/s6/init/init-stage2 && \
    chmod +x /docker-mods && \
@@ -28,14 +31,15 @@ RUN \
        armhf|arm|armv7l|armv7) export ARCH='arm' ;; \
        arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm64' ;; \
    esac && \  
-   mkdir -p /install  && \
    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
-   wget https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz -P "/install" -q --show-progress && \
-   tar -xvzf /install/statping-linux-$ARCH.tar.gz -C /install && \
-   chmod +x /install/statping && \
-   mv /install/statping /usr/local/bin/statping
+   curl -L -o statping-linux-$ARCH.tar.gz https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz && \
+   tar -xvzf statping-linux-$ARCH.tar.gz -C /install && \
+   chmod +x statping && \
+   mv statping /usr/local/bin/statping && \
+   rm -rf statping-linux-$ARCH.tar.gz
 COPY root/ /
 
+WORKDIR /app
 VOLUME /app
 EXPOSE $PORT
 
