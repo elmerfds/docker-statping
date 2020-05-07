@@ -50,9 +50,9 @@ jobs:
       run: |
         docker buildx build \
         --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        --file ./Dockerfile \             
-        --tag eafxx/statping:exp \
-        --load            
+        --file ./Dockerfile \ 
+        --load \                    
+        --tag eafxx/statping:exp
     - name: Push image
       run: |      
         docker buildx build \
