@@ -2,7 +2,7 @@
 FROM eafxx/ubuntu-base:latest
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
-#SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3018,DL3003,DL3008 
 RUN \
  mkdir -p /install && \
@@ -19,7 +19,7 @@ ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /install
-#SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3018,DL3003,DL3008,SC2086  
 RUN \
    chmod +x /etc/s6/init/init-stage2 && \
