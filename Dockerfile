@@ -21,7 +21,7 @@ ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /install
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-# hadolint ignore=DL3018,DL3003,DL3008 
+# hadolint ignore=DL3018,DL3003,DL3008,SC2086  
 RUN \
    chmod +x /etc/s6/init/init-stage2 && \
    chmod +x /docker-mods && \
@@ -32,11 +32,11 @@ RUN \
        arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm64' ;; \
    esac && \  
    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
-   curl -L -o statping-linux-$ARCH.tar.gz https://github.com/statping/statping/releases/download/$VERSION/statping-linux-$ARCH.tar.gz && \
-   tar -xvzf statping-linux-$ARCH.tar.gz -C /install && \
+   curl -L -o statping-linux-"$ARCH".tar.gz https://github.com/statping/statping/releases/download/"$VERSION"/statping-linux-"$ARCH".tar.gz && \
+   tar -xvzf statping-linux-"$ARCH".tar.gz && \
    chmod +x statping && \
    mv statping /usr/local/bin/statping && \
-   rm -rf statping-linux-$ARCH.tar.gz
+   rm -rf statping-linux-"$ARCH".tar.gz
 COPY root/ /
 
 WORKDIR /app
