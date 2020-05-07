@@ -51,8 +51,8 @@ jobs:
         docker buildx build \
         --platform linux/amd64,linux/arm64,linux/arm/v7 \
         --output "type=image,push=false" \
-        --file ./Dockerfile .                
-        --tag eafxx/statping:exp \            
+        --file ./Dockerfile . \             
+        --tag eafxx/statping:exp            
     - name: Push image
       run: |      
         docker buildx build \
