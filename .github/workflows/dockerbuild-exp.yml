@@ -8,6 +8,7 @@ on:
       - exp
 jobs:
   pre-checks:
+    name: New pre-checks name   
     runs-on: ubuntu-latest
     steps:   
     - uses: actions/checkout@v2
