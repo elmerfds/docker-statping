@@ -13,8 +13,6 @@ RUN \
       curl \
       jq \
       ruby-sass
-#RUN curl -L -s https://assets.statping.com/sass -o /usr/local/bin/sass && \
-#    chmod +x /usr/local/bin/sass
 ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080    
