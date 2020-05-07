@@ -3,8 +3,7 @@ on:
   push:
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/dockerbuild-dev.yml'
-      - '.github/workflows/dockerbuild-exp.yml'            
+      - '.github/workflows/*'           
     branches: 
       - master
 jobs:
