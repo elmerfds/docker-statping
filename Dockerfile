@@ -1,6 +1,8 @@
 FROM eafxx/ubuntu-base
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+# hadolint ignore=DL3018,DL3003
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && apt-get update \
  && apt-get upgrade -y \
@@ -16,7 +18,7 @@ ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
 ENV PORT=8080    
 WORKDIR /app
-
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
    chmod +x /etc/s6/init/init-stage2 && \
    chmod +x /docker-mods && \

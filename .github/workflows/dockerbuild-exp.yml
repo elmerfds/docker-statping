@@ -8,11 +8,26 @@ on:
     branches: 
       - exp
 jobs:
+  pre-checks:
+    runs-on: ubuntu-latest
+    steps:   
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.client_payload.branch }}
+    - name: Bash Lint check
+      uses: azohra/shell-linter@v0.3.0
+    - name: Dockerfile Lint   
+      uses: ghe-actions/dockerfile-validator@v1.6
+      with:
+        dockerfile: 'Dockerfile'
+        lint: 'hadolint'
+        dockerlabelvalidate: 'yes'   
   buildx:
+    needs: pre-checks 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: docker login
+    - name: Docker login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
