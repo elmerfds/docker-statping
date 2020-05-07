@@ -2,7 +2,7 @@
 FROM eafxx/ubuntu-base:latest
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+#SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3018,DL3003,DL3008 
 RUN \
  mkdir -p /install && \
