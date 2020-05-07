@@ -7,23 +7,23 @@ on:
     branches: 
       - exp
 jobs:
-#  pre-checks:
-#    name: Pre-build Lint Checks 
-#    runs-on: ubuntu-latest
-#    steps:   
-#    - uses: actions/checkout@v2
-#      with:
-#        ref: ${{ github.event.client_payload.branch }}
-#    - name: Bash Lint check
-#      uses: azohra/shell-linter@v0.3.0
-#    - name: Dockerfile Lint   
-#      uses: ghe-actions/dockerfile-validator@v1.6
-#      with:
-#        dockerfile: 'Dockerfile'
-#        lint: 'hadolint'
-#        dockerlabelvalidate: 'yes'   
+  pre-checks:
+    name: Pre-build Lint Checks 
+    runs-on: ubuntu-latest
+    steps:   
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.client_payload.branch }}
+    - name: Bash Lint check
+      uses: azohra/shell-linter@v0.3.0
+    - name: Dockerfile Lint   
+      uses: ghe-actions/dockerfile-validator@v1.6
+      with:
+        dockerfile: 'Dockerfile'
+        lint: 'hadolint'
+        dockerlabelvalidate: 'yes'   
   buildx:
-    #needs: pre-checks 
+    needs: pre-checks 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -46,14 +46,10 @@ jobs:
         qemu-version: latest
     - name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
-    - name: Buildx Multiarch Build
+    - name: Buildx Multiarch Build & Push image
       run: |
         docker buildx build \
         --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        --file ./Dockerfile \ 
-        --load \                    
-        --tag eafxx/statping:exp
-    - name: Push image
-      run: |      
-        docker buildx build \
-        --push
+        --tag eafxx/statping:exp \
+        --push . \
+        --file ./Dockerfile
