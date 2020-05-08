@@ -1,4 +1,6 @@
 #!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+# shellcheck disable=SC2086
 VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") 
 SOURCE_VER=$VERSION
 # get machine arch
@@ -10,7 +12,7 @@ SOURCE_VER=$VERSION
    esac;
 
 mkdir -p /install 
-cd /install
+cd /install || return
 if [[ ! -f "/usr/local/bin/statping" ]]; then
   echo '-----------------------'
   echo '| Installing Statping |'
@@ -65,5 +67,5 @@ chown -R abc:abc \
         /config \
        /app
 
-cd /app
+cd /app || return
 

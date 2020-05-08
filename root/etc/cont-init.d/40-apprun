@@ -1,4 +1,6 @@
 #!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+# shellcheck disable=SC2086
 echo
 echo "-----------------------"
 echo "| Statping run flags  |"
