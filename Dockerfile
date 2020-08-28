@@ -25,7 +25,7 @@ RUN \
    MACHINE_ARCH="$(uname -m)" && \
    case "$MACHINE_ARCH" in \
        x86_64) export ARCH='amd64' ;; \
-       armhf|arm|armv7l|armv7) export ARCH='arm' ;; \
+       armhf|arm|armv7l|armv7) export ARCH='arm-7' ;; \
        arm64|aarch64|armv8b|armv8l|aarch64_be) export ARCH='arm64' ;; \
    esac && \  
    VERSION=$(curl -s https://api.github.com/repositories/136770331/releases/latest | jq -r ".tag_name") && \
