@@ -3,14 +3,12 @@ on:
   push:
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/*'
-      - '.github/.actionspanel/*'               
+      - '.github/workflows/*'          
     branches: 
       - exp
   schedule:
     - cron: '00 0 * * 6'
-  repository_dispatch:
-    types: [run-build-exp]     
+  workflow_dispatch:    
 jobs:
   pre-checks:
     name: 1. Pre-build Lint Checks
