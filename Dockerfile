@@ -12,6 +12,7 @@ RUN \
       tzdata \
       curl \
       jq \
+      iputils-ping \
       ruby-sass
 ENV IS_DOCKER=true
 ENV STATPING_DIR=/app
