@@ -1,5 +1,5 @@
 # hadolint ignore=DL3007
-FROM eafxx/ubuntu-base:focal
+FROM eafxx/ubuntu-base:latest
 LABEL maintainer="https://github.com/elmerfdz"
 ARG VERSION
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
